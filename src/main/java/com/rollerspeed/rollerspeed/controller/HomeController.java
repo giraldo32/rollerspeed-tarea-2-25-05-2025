@@ -1,13 +1,14 @@
 package com.rollerspeed.rollerspeed.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class InstitucionalController {
+public class HomeController {
 
-    @GetMapping("/institucional")
-    public String institucional() {
-        return "institucional";
+    @GetMapping("/")
+    public String home(Model model) {
+        return "index";
     }
 }

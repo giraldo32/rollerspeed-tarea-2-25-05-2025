@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escuela Roller Speed</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background: #f8f9fa;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-button {
+      margin: 4px;
+      min-width: 130px;
+    }
+    .section {
+      display: none;
+      padding-top: 20px;
+    }
+    .active-section {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    h4::before {
+      content: "• ";
+      color: #0d6efd;
+    }
+    .barra-azul {
+      background: #0d6efd;
+      height: 60px;
+      width: 100vw;
+      min-width: 100%;
+    }
+    .barra-azul.abajo {
+      margin-top: auto;
+    }
+    .contenido-central {
+      flex: 1 0 auto;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="barra-azul"></div>
+  <div class="contenido-central">
+    <div class="text-center mb-3">
+      <h2 class="fw-bold text-primary">Escuela de Patinaje Roller Speed</h2>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center mb-4">
+      <button class="btn btn-primary nav-button" onclick="showSection('mision')">Misión</button>
+      <button class="btn btn-primary nav-button" onclick="showSection('vision')">Visión</button>
+      <button class="btn btn-primary nav-button" onclick="showSection('valores')">Valores</button>
+      <button class="btn btn-primary nav-button" onclick="showSection('servicios')">Servicios</button>
+      <button class="btn btn-primary nav-button" onclick="showSection('eventos')">Eventos</button>
+      <button class="btn btn-success nav-button" onclick="showSection('registroEst')">Registro Estudiante</button>
+      <button class="btn btn-success nav-button" onclick="showSection('registroInst')">Registro Instructor</button>
+      <button class="btn btn-info text-white nav-button" onclick="showSection('calendario')">Calendario</button>
+      <button class="btn btn-warning nav-button" onclick="showSection('testimonios')">Testimonios</button>
+      <button class="btn btn-secondary nav-button" onclick="showSection('registroClase')">Registro Clase</button>
+      <button class="btn btn-dark nav-button" onclick="showSection('calendarioClases')">Calendario y Horario</button>
+    </div>
+
+    <!-- Secciones -->
+    <div id="mision" class="section active-section">
+      <h4>Misión</h4>
+      <p>Formar patinadores integrales promoviendo el deporte y los valores en un ambiente seguro y motivador.</p>
+    </div>
+
+    <div id="vision" class="section">
+      <h4>Visión</h4>
+      <p>Ser una escuela líder en formación deportiva en patinaje, reconocida por su calidad y compromiso.</p>
+    </div>
+
+    <div id="valores" class="section">
+      <h4>Valores</h4>
+      <ul>
+        <li>Disciplina</li>
+        <li>Respeto</li>
+        <li>Trabajo en equipo</li>
+        <li>Pasión</li>
+      </ul>
+    </div>
+
+    <div id="servicios" class="section">
+      <h4>Servicios</h4>
+      <ul>
+        <li>Clases para todas las edades</li>
+        <li>Entrenamientos personalizados</li>
+        <li>Eventos y competencias</li>
+      </ul>
+    </div>
+
+    <div id="eventos" class="section">
+      <h4>Eventos</h4>
+      <p><strong>Reto Roller 2025:</strong> 10 de junio | Parque Deportivo Central</p>
+    </div>
+
+    <div id="registroEst" class="section">
+      <h4>Registro de Estudiantes</h4>
+      <form id="formEstudiante">
+        <input type="text" class="form-control mb-2" placeholder="Nombre completo" id="nombreEst" required />
+        <input type="number" class="form-control mb-2" placeholder="Edad" id="edadEst" required />
+        <input type="email" class="form-control mb-2" placeholder="Correo electrónico" id="correoEst" required />
+        <select class="form-control mb-2" id="nivelEst" required>
+          <option disabled selected value="">Nivel</option>
+          <option>Básico</option>
+          <option>Intermedio</option>
+          <option>Avanzado</option>
+        </select>
+        <select class="form-control mb-2" id="pagoEst" required>
+          <option disabled selected value="">Método de pago</option>
+          <option>Efectivo</option>
+          <option>Transferencia</option>
+          <option>Tarjeta</option>
+        </select>
+        <button class="btn btn-success w-100" type="submit">Guardar Registro</button>
+      </form>
+      <div class="mt-3">
+        <button class="btn btn-outline-dark w-100" onclick="listarEstudiantes()">Mostrar Estudiantes Registrados</button>
+        <div id="tablaEstudiantes"></div>
+      </div>
+    </div>
+
+    <div id="registroInst" class="section">
+      <h4>Registro de Instructores</h4>
+      <form id="formInstructor">
+        <input type="text" class="form-control mb-2" placeholder="Nombre completo" id="nombreInst" required />
+        <input type="number" class="form-control mb-2" placeholder="Años de experiencia" id="experienciaInst" required />
+        <input type="email" class="form-control mb-2" placeholder="Correo electrónico" id="correoInst" required />
+        <input type="text" class="form-control mb-2" placeholder="Especialidad" id="especialidadInst" required />
+        <button class="btn btn-success w-100" type="submit">Guardar Registro</button>
+      </form>
+      <div class="mt-3">
+        <button class="btn btn-outline-dark w-100" onclick="listarInstructores()">Mostrar Instructores Registrados</button>
+        <div id="tablaInstructores"></div>
+      </div>
+    </div>
+
+    <div id="calendario" class="section">
+      <h4>Calendario de Clases</h4>
+      <ul>
+        <li><strong>Lunes:</strong> 4:00 pm - Nivel Básico</li>
+        <li><strong>Miércoles:</strong> 5:30 pm - Nivel Intermedio</li>
+        <li><strong>Viernes:</strong> 6:00 pm - Nivel Avanzado</li>
+      </ul>
+    </div>
+
+    <div id="testimonios" class="section">
+      <h4>Testimonios</h4>
+      <blockquote class="blockquote">"Una experiencia maravillosa para mi hijo. ¡Gracias Roller Speed!"</blockquote>
+      <blockquote class="blockquote">"Excelentes instructores, muy recomendada."</blockquote>
+    </div>
+
+    <!-- Registro de Clases -->
+    <div id="registroClase" class="section">
+      <h4>Registro de Clases</h4>
+      <form id="formClase">
+        <input type="text" class="form-control mb-2" placeholder="Nombre de la clase" id="nombreClase" required />
+        <input type="text" class="form-control mb-2" placeholder="Instructor" id="instructorClase" required />
+        <input type="text" class="form-control mb-2" placeholder="Nivel (Básico/Intermedio/Avanzado)" id="nivelClase" required />
+        <input type="date" class="form-control mb-2" id="fechaClase" required />
+        <input type="time" class="form-control mb-2" id="horaClase" required />
+        <button class="btn btn-secondary w-100" type="submit">Guardar Clase</button>
+      </form>
+      <div class="mt-3">
+        <button class="btn btn-outline-dark w-100" onclick="listarClases()">Mostrar Clases Registradas</button>
+        <div id="tablaClases"></div>
+      </div>
+    </div>
+
+    <!-- Calendario y Horario de Clases -->
+    <div id="calendarioClases" class="section">
+      <h4>Calendario y Horario de Clases</h4>
+      <button class="btn btn-outline-primary mb-2" onclick="listarClasesCalendario()">Actualizar Calendario</button>
+      <div id="tablaClasesCalendario"></div>
+    </div>
+  </div>
+  <div class="barra-azul abajo"></div>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
+      document.getElementById(id).classList.add('active-section');
+    }
+
+    // Registro de Estudiantes
+    document.getElementById('formEstudiante').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const estudiante = {
+        nombre: document.getElementById('nombreEst').value,
+        edad: document.getElementById('edadEst').value,
+        correo: document.getElementById('correoEst').value,
+        nivel: document.getElementById('nivelEst').value,
+        pago: document.getElementById('pagoEst').value
+      };
+      let lista = JSON.parse(localStorage.getItem('estudiantes')) || [];
+      lista.push(estudiante);
+      localStorage.setItem('estudiantes', JSON.stringify(lista));
+      this.reset();
+      alert('Estudiante registrado con éxito.');
+    });
+
+    // Registro de Instructores
+    document.getElementById('formInstructor').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const instructor = {
+        nombre: document.getElementById('nombreInst').value,
+        experiencia: document.getElementById('experienciaInst').value,
+        correo: document.getElementById('correoInst').value,
+        especialidad: document.getElementById('especialidadInst').value
+      };
+      let lista = JSON.parse(localStorage.getItem('instructores')) || [];
+      lista.push(instructor);
+      localStorage.setItem('instructores', JSON.stringify(lista));
+      this.reset();
+      alert('Instructor registrado con éxito.');
+    });
+
+    // Registro de Clases
+    document.getElementById('formClase').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const clase = {
+        nombre: document.getElementById('nombreClase').value,
+        instructor: document.getElementById('instructorClase').value,
+        nivel: document.getElementById('nivelClase').value,
+        fecha: document.getElementById('fechaClase').value,
+        hora: document.getElementById('horaClase').value
+      };
+      let lista = JSON.parse(localStorage.getItem('clases')) || [];
+      lista.push(clase);
+      localStorage.setItem('clases', JSON.stringify(lista));
+      this.reset();
+      alert('Clase registrada con éxito.');
+    });
+
+    // Listar Estudiantes
+    function listarEstudiantes() {
+      let lista = JSON.parse(localStorage.getItem('estudiantes')) || [];
+      let html = '<table class="table table-bordered table-striped"><thead class="table-primary"><tr><th>Nombre</th><th>Edad</th><th>Correo</th><th>Nivel</th><th>Pago</th></tr></thead><tbody>';
+      lista.forEach(e => {
+        html += `<tr><td>${e.nombre}</td><td>${e.edad}</td><td>${e.correo}</td><td>${e.nivel}</td><td>${e.pago}</td></tr>`;
+      });
+      html += '</tbody></table>';
+      document.getElementById('tablaEstudiantes').innerHTML = html;
+    }
+
+    // Listar Instructores
+    function listarInstructores() {
+      let lista = JSON.parse(localStorage.getItem('instructores')) || [];
+      let html = '<table class="table table-bordered table-striped"><thead class="table-success"><tr><th>Nombre</th><th>Experiencia</th><th>Correo</th><th>Especialidad</th></tr></thead><tbody>';
+      lista.forEach(i => {
+        html += `<tr><td>${i.nombre}</td><td>${i.experiencia}</td><td>${i.correo}</td><td>${i.especialidad}</td></tr>`;
+      });
+      html += '</tbody></table>';
+      document.getElementById('tablaInstructores').innerHTML = html;
+    }
+
+    // Listar Clases (para ambas secciones)
+    function listarClases() {
+      let lista = JSON.parse(localStorage.getItem('clases')) || [];
+      let html = '<table class="table table-bordered table-striped"><thead class="table-dark"><tr><th>Clase</th><th>Instructor</th><th>Nivel</th><th>Fecha</th><th>Hora</th></tr></thead><tbody>';
+      lista.forEach(c => {
+        html += `<tr><td>${c.nombre}</td><td>${c.instructor}</td><td>${c.nivel}</td><td>${c.fecha}</td><td>${c.hora}</td></tr>`;
+      });
+      html += '</tbody></table>';
+      document.getElementById('tablaClases').innerHTML = html;
+      document.getElementById('tablaClasesCalendario').innerHTML = html;
+    }
+
+    // Listar Clases solo para Calendario
+    function listarClasesCalendario() {
+      let lista = JSON.parse(localStorage.getItem('clases')) || [];
+      let html = '<table class="table table-bordered table-striped"><thead class="table-dark"><tr><th>Clase</th><th>Instructor</th><th>Nivel</th><th>Fecha</th><th>Hora</th></tr></thead><tbody>';
+      lista.forEach(c => {
+        html += `<tr><td>${c.nombre}</td><td>${c.instructor}</td><td>${c.nivel}</td><td>${c.fecha}</td><td>${c.hora}</td></tr>`;
+      });
+      html += '</tbody></table>';
+      document.getElementById('tablaClasesCalendario').innerHTML = html;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Instructores</title>
+</head>
+<body>
+    <h1>Lista de Instructores</h1>
+    <ul>
+        <th:block th:each="instructor : ${instructors}">
+            <li>
+                <b th:text="${instructor.nombre}"></b> - 
+                <span th:text="${instructor.experiencia}"></span> años - 
+                <span th:text="${instructor.correo}"></span> - 
+                <span th:text="${instructor.especialidad}"></span>
+            </li>
+        </th:block>
+    </ul>
+    <a href="/instructor/register">Registrar nuevo instructor</a>
+</body>
+</html>
