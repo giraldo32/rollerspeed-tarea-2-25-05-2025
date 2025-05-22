@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roller Speed</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #0066cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #004d99;
+      flex-wrap: wrap;
+      padding: 0.5rem;
+    }
+
+    nav button {
+      background: #007acc;
+      border: none;
+      color: white;
+      padding: 0.75rem 1.25rem;
+      margin: 0.25rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    nav button:hover {
+      background: #005f99;
+    }
+
+    main {
+      padding: 1rem 2rem;
+    }
+
+    section {
+      padding: 1rem 0;
+      display: none;
+    }
+
+    section.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #004d99;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Escuela de Patinaje "Roller Speed"</h1>
+  </header>
+
+  <nav>
+    <button onclick="mostrar('mision')">Misión</button>
+    <button onclick="mostrar('vision')">Visión</button>
+    <button onclick="mostrar('valores')">Valores</button>
+    <button onclick="mostrar('servicios')">Servicios</button>
+    <button onclick="mostrar('eventos')">Eventos</button>
+  </nav>
+
+  <main>
+    <section id="mision" class="active">
+      <h2>Misión</h2>
+      <p>Formar integralmente a niños y jóvenes en la disciplina del patinaje, fomentando valores como la perseverancia, el respeto y la excelencia deportiva.</p>
+    </section>
+
+    <section id="vision">
+      <h2>Visión</h2>
+      <p>Ser la escuela de patinaje líder en Santa Marta y referente nacional en formación deportiva y desarrollo humano.</p>
+    </section>
+
+    <section id="valores">
+      <h2>Valores</h2>
+      <ul>
+        <li>Disciplina</li>
+        <li>Trabajo en equipo</li>
+        <li>Respeto</li>
+        <li>Compromiso</li>
+        <li>Pasión por el deporte</li>
+      </ul>
+    </section>
+
+    <section id="servicios">
+      <h2>Servicios</h2>
+      <ul>
+        <li>Clases para principiantes y avanzados</li>
+        <li>Entrenamiento para competencias</li>
+        <li>Eventos recreativos y deportivos</li>
+        <li>Alquiler de equipos de patinaje</li>
+      </ul>
+    </section>
+
+    <section id="eventos">
+      <h2>Eventos</h2>
+      <p>Próximamente: <br>
+        - Torneo Intercolegial de Patinaje - 20 de mayo<br>
+        - Festival Familiar Roller Speed - 5 de junio<br>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Roller Speed - Santa Marta, Colombia
+  </footer>
+
+  <script>
+    function mostrar(id) {
+      document.querySelectorAll("section").forEach(sec => {
+        sec.classList.remove("active");
+      });
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
+</body>
+</html>
