@@ -2,8 +2,10 @@
 package com.rollerspeed.rollerspeed.controller;
 
 import org.springframework.web.bind.annotation.*;
+
+import com.rollerspeed.rollerspeed.model.Instructor;
+
 import java.util.*;
-import com.rollerspeed.rollerspeed.controller.model.Instructor;
 
 @RestController
 @RequestMapping("/api/instructores")

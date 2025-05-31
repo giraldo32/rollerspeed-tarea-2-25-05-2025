@@ -1,6 +1,15 @@
-package com.rollerspeed.rollerspeed.controller.model;
+package com.rollerspeed.rollerspeed.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tbl_estudiantes")
 public class Estudiante {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nombre;
     private int edad;
     private String correo;
@@ -16,6 +25,10 @@ public class Estudiante {
         this.nivel = nivel;
         this.pago = pago;
     }
+
+    // getters y setters...
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
