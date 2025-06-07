@@ -8,6 +8,8 @@ import jakarta.persistence.*;
 
 import jakarta.persistence.Entity;
 
+
+
 /**
  * Entidad que representa un usuario en el sistema.
  */
